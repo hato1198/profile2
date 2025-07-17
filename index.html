@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hato's Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="profile-image-container">
+                <img src="assets/images/profile.jpg" alt="プロフィール画像" class="profile-image">
+            </div>
+            <h1 class="profile-name">
+                <span>h</span><span>a</span><span>t</span><span>o</span><span>;</span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Sidebar for Desktop -->
+        <aside class="sidebar">
+            <div class="sidebar-profile">
+                <img src="assets/images/profile.jpg" alt="プロフィール画像">
+                <h3>hato;</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#about">ABOUT ME</a></li>
+                    <li><a href="#websites">MY WEBSITES</a></li>
+                    <li><a href="#downloads">DOWNLOADS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="#links">LINKS</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- ABOUT ME Section -->
+            <section id="about" class="reveal-on-scroll">
+                <h2>ABOUT ME</h2>
+                <p>ゲームとVTuberが好きな男子高校生です。ウェブツールやデスクトップアプリの開発、Blenderを使ったキャラクターモデリングなどを行っています。</p>
+                <dl class="profile-details">
+                    <div><dt>推し</dt><dd>しぐれうい, 周央 サンゴ</dd></div>
+                    <div><dt>趣味</dt><dd>Blenderをいじること, ゲーム</dd></div>
+                    <div><dt>誕生日</dt><dd>7月17日</dd></div>
+                    <div><dt>居住地</dt><dd>関東</dd></div>
+                    <div><dt>好きなゲーム</dt><dd>Splatoon, プロジェクトセカイ, VALORANT, APEX</dd></div>
+                    <div><dt>好きなアニメ</dt><dd>少女終末旅行, リコリス・リコイル</dd></div>
+                    <div><dt>好きな曲</dt><dd>打上花火, こちらエッキスエス, ノンブレス・オブリージュ, 勝手に生きましょ</dd></div>
+                </dl>
+            </section>
+
+            <!-- MY WEBSITES Section -->
+            <section id="websites" class="reveal-on-scroll">
+                <h2>MY WEBSITES</h2>
+                <div class="card-container stagger-container">
+                    <a href="https://focus-lines-maker.vercel.app/" target="_blank" class="website-card stagger-child">
+                        <img src="assets/images/project-1.png" alt="集中線メーカー">
+                        <div class="card-content">
+                            <h3>集中線メーカー</h3>
+                            <p>画像に集中線を追加できる無料ツール</p>
+                        </div>
+                    </a>
+                    <a href="https://neontetris.vercel.app/" target="_blank" class="website-card stagger-child">
+                        <img src="assets/images/project-2.png" alt="Tetris">
+                        <div class="card-content">
+                            <h3>Tetris</h3>
+                            <p>ブラウザでいつでもすぐに遊べるテトリス</p>
+                        </div>
+                    </a>
+                    <a href="https://hato1198.github.io/seat-changer/" target="_blank" class="website-card stagger-child">
+                        <img src="assets/images/project-3.png" alt="ランダム席替えツール">
+                        <div class="card-content">
+                            <h3>ランダム席替えツール</h3>
+                            <p>くじ引き風の席替えが簡単にできるツール</p>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="website-card stagger-child">
+                        <img src="assets/images/project-4.png" alt="PixelPad">
+                        <div class="card-content">
+                            <h3>PixelPad【開発中】</h3>
+                            <p>多機能なドット絵エディター</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- DOWNLOADS Section -->
+            <section id="downloads" class="reveal-on-scroll">
+                <h2>DOWNLOADS</h2>
+                <div class="card-container stagger-container">
+                    <div class="download-card stagger-child" data-title="カスタムカーソルパック vol.1" data-link="https://example.com/booth/cursor" data-link-text="boothでダウンロード">
+                        <img src="assets/images/news-1.png" alt="カスタムカーソルの画像">
+                        <div class="card-content">
+                            <h3>カスタムカーソルパック vol.1</h3>
+                            <div class="card-body-hidden">
+                                <p>オリジナルのキャラクターをモチーフにしたマウスカーソルを作成しました。Windowsですぐに使える.cur形式のファイルです。boothにて無料で配布していますので、ぜひお試しください！</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="download-card stagger-child" data-title="Hato's Blender Toolkit" data-link="https://example.com/github/blender-addon" data-link-text="GitHubで見る">
+                        <img src="assets/images/news-2.png" alt="Blenderアドオンのスクリーンショット">
+                        <div class="card-content">
+                            <h3>Hato's Blender Toolkit</h3>
+                            <div class="card-body-hidden">
+                                <p>Blenderでのモデリング作業を効率化するための自作アドオンです。よく使う操作をまとめたパイメニューや、便利な機能を追加します。現在アルファ版をGitHubにて公開中です。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT Section -->
+            <section id="contact" class="reveal-on-scroll">
+                <h2>CONTACT</h2>
+                <p>ご意見、ご質問、ご要望などはこちらからお気軽にご連絡ください。</p>
+                <div class="contact-button-wrapper">
+                    <a href="https://marshmallow-qa.com/2le6eurfouezce0" class="button" target="_blank" rel="noopener noreferrer">マシュマロでメッセージを送る</a>
+                </div>
+            </section>
+
+            <!-- LINKS Section -->
+            <section id="links" class="reveal-on-scroll">
+                <h2>LINKS</h2>
+                <ul class="link-list stagger-container">
+                    <li class="stagger-child"><a href="https://x.com/hato_1198_ui" target="_blank" rel="noopener noreferrer">X</a></li>
+                    <li class="stagger-child"><a href="https://bsky.app/profile/hato1198.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
+                    <li class="stagger-child"><a href="https://note.com/hato1198" target="_blank" rel="noopener noreferrer">note</a></li>
+                    <li class="stagger-child"><a href="https://hato1198.booth.pm/" target="_blank" rel="noopener noreferrer">booth</a></li>
+                    <li class="stagger-child"><a href="https://www.youtube.com/@hato-1198-ui" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                    <li class="stagger-child"><a href="https://github.com/hato1198" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li class="stagger-child"><a href="https://misskey.io/@hato1198" target="_blank" rel="noopener noreferrer">Misskey</a></li>
+                    <li class="stagger-child"><a href="https://marshmallow-qa.com/2le6eurfouezce0" target="_blank" rel="noopener noreferrer">マシュマロ</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 hato. All rights reserved.</p>
+    </footer>
+
+    <!-- Hamburger Menu & Overlay -->
+    <div class="mobile-menu-container">
+        <button class="hamburger-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#about">ABOUT ME</a></li>
+                <li><a href="#websites">MY WEBSITES</a></li>
+                <li><a href="#downloads">DOWNLOADS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#links">LINKS</a></li>
+            </ul>
+        </nav>
+        <div class="nav-overlay"></div>
+    </div>
+
+
+    <!-- Modal for Downloads -->
+    <div id="modal-container">
+        <div class="modal-content">
+            <button class="modal-close-button">×</button>
+            <img id="modal-image" src="" alt="ダウンロードのサムネイル画像">
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+            <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="button"></a>
+        </div>
+    </div>
+
+    <!-- Page Top Button -->
+    <a href="#hero" id="page-top-btn" aria-label="トップに戻る">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,742 @@
+/*
+ * ===================================================================
+ *   hato's Profile - Stylesheet
+ * ===================================================================
+ *
+ * 目次:
+ * 1. VARIABLES & BASIC SETUP
+ * 2. LAYOUT & STRUCTURE
+ *    2.1. Content Wrapper
+ *    2.2. Sidebar
+ *    2.3. Footer
+ * 3. HERO HEADER
+ *    3.1. General Styles
+ *    3.2. Animation States
+ * 4. COMMON COMPONENTS
+ *    4.1. Section Titles
+ *    4.2. Buttons
+ *    4.3. Cards (Websites & Downloads)
+ * 5. PAGE SECTIONS
+ *    5.1. About Me
+ *    5.2. My Websites
+ *    5.3. Downloads
+ *    5.4. Contact
+ *    5.5. Links
+ * 6. MOBILE NAVIGATION
+ *    6.1. Hamburger Menu
+ *    6.2. Navigation Panel & Overlay
+ * 7. MODAL
+ * 8. ANIMATIONS
+ *    8.1. Scroll Reveal
+ * 9. RESPONSIVE DESIGN
+ *
+ * ===================================================================
+ */
+
+
+/* --- 1. VARIABLES & BASIC SETUP --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --hero-bg-color: #2c2c2c;
+    --hero-text-color: #ffffff;
+    --light-gray-color: #f0f0f0;
+    --border-color: #e0e0e0;
+    --font-main: 'Noto Sans JP', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-weight: 300;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+h1, h2, h3 {
+    font-weight: 200;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--hero-bg-color);
+}
+
+section {
+    padding: 80px 0;
+}
+
+
+/* --- 2. LAYOUT & STRUCTURE --- */
+
+/* 2.1. Content Wrapper */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 30vh;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+}
+
+.main-content {
+    flex-grow: 1;
+    width: 75%;
+}
+
+/* 2.2. Sidebar */
+.sidebar {
+    width: 25%;
+    padding-right: 60px;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    /* height: 100vh; を削除してフッターとの干渉を解消 */
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 80px;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.sidebar.scrolled .sidebar-profile {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sidebar-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.sidebar-profile h3 {
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    transition: transform 0.5s ease;
+}
+
+.sidebar.scrolled .sidebar-nav ul {
+    transform: translateY(40px);
+}
+
+.sidebar-nav li {
+    margin-bottom: 15px;
+}
+
+.sidebar-nav a {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.sidebar-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sidebar-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* 2.3. Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+
+/* --- 3. HERO HEADER --- */
+
+/* 3.1. General Styles */
+.hero {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--hero-bg-color);
+    color: var(--hero-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: height 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.profile-image-container {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    flex-shrink: 0;
+    z-index: 3;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.profile-name {
+    font-size: 6rem;
+    font-weight: 100;
+    letter-spacing: 0.05em;
+    position: absolute;
+    left: 20%;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.profile-name span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.6s ease;
+}
+
+/* 3.2. Animation States */
+body.anim-step-1 .profile-image {
+    clip-path: circle(75% at 50% 50%);
+}
+
+body.anim-step-2 .profile-image-container {
+    transform: translateX(-130px);
+}
+body.anim-step-2 .profile-name {
+    z-index: 2;
+}
+body.anim-step-2 .profile-name span {
+    opacity: 1;
+    transform: translateX(0);
+}
+body.anim-step-2 .profile-name span:nth-child(1) { transition-delay: 0.1s; }
+body.anim-step-2 .profile-name span:nth-child(2) { transition-delay: 0.15s; }
+body.anim-step-2 .profile-name span:nth-child(3) { transition-delay: 0.2s; }
+body.anim-step-2 .profile-name span:nth-child(4) { transition-delay: 0.25s; }
+body.anim-step-2 .profile-name span:nth-child(5) { transition-delay: 0.3s; }
+
+body.loaded .hero {
+    height: 30vh;
+}
+body.loaded .hero-content {
+    transform: scale(0.8);
+}
+
+
+/* --- 4. COMMON COMPONENTS --- */
+
+/* 4.1. Section Titles */
+section h2 {
+    font-size: 2.8rem;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+    text-align: left;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background-color: var(--hero-bg-color);
+}
+
+/* 4.2. Buttons */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--hero-bg-color);
+    color: var(--hero-text-color);
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.button:hover {
+    background-color: #000;
+    color: var(--hero-text-color);
+}
+
+/* 4.3. Cards (Websites & Downloads) */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.website-card, .download-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    /* transition プロパティは stagger-child 側で一元管理 */
+}
+.website-card:hover, .download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+.download-card {
+    cursor: pointer;
+}
+
+.website-card img, .download-card img {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-content {
+    padding: 20px;
+}
+.card-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.card-body-hidden {
+    display: none;
+}
+
+
+/* --- 5. PAGE SECTIONS --- */
+
+/* 5.1. About Me */
+#about p {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 0 40px 0;
+}
+.profile-details {
+    max-width: 800px;
+    margin: 0;
+    display: grid;
+    gap: 15px;
+}
+.profile-details div {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+.profile-details dt {
+    width: 120px;
+    flex-shrink: 0;
+    font-weight: 300;
+}
+.profile-details dd {
+    margin-left: 20px;
+}
+
+/* 5.2. My Websites */
+/* (Styles are covered by common card styles) */
+
+/* 5.3. Downloads */
+/* (Styles are covered by common card styles) */
+
+/* 5.4. Contact */
+#contact p {
+    margin-bottom: 30px;
+}
+.contact-button-wrapper {
+    text-align: left;
+}
+
+/* 5.5. Links */
+.link-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.link-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.link-list li a:hover {
+    background-color: var(--light-gray-color);
+    color: var(--text-color);
+}
+
+
+/* --- 6. MOBILE NAVIGATION --- */
+
+/* 6.1. Hamburger Menu */
+.mobile-menu-container {
+    display: none;
+}
+.hamburger-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: none;
+    z-index: 1001;
+    cursor: pointer;
+}
+.hamburger-button span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background-color: #555;
+    margin: 6px auto;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-button.active span {
+    background-color: var(--hero-text-color);
+}
+.hamburger-button.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-button.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-button.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 6.2. Navigation Panel & Overlay */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background: rgba(50, 50, 50, 0.75);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1000;
+    padding: 100px 40px;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mobile-nav.active {
+    transform: translateX(0);
+}
+.mobile-nav ul {
+    list-style: none;
+    text-align: left;
+}
+.mobile-nav li {
+    margin-bottom: 25px;
+}
+.mobile-nav a {
+    color: var(--hero-text-color);
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- 7. MODAL --- */
+#modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+#modal-container.visible {
+    display: flex;
+}
+.modal-content {
+    background-color: var(--bg-color);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modal-fade-in 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes modal-fade-in {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.modal-close-button:hover {
+    transform: rotate(90deg);
+    color: var(--text-color);
+}
+
+#modal-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+#modal-title {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+#modal-body {
+    margin-bottom: 30px;
+}
+
+
+/* --- 8. PAGE TOP BUTTON --- */
+#page-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--hero-bg-color);
+    color: var(--hero-text-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 990;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, background-color 0.3s ease;
+}
+
+#page-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#page-top-btn:hover {
+    background-color: #000;
+    transform: translateY(-3px);
+    color: var(--hero-text-color);
+}
+
+#page-top-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#page-top-btn:hover svg {
+    transform: rotateY(180deg);
+}
+
+
+/* --- 9. ANIMATIONS --- */
+
+/* 9.1. Scroll Reveal */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.stagger-child {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
+                transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+                box-shadow 0.3s ease;
+}
+
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.is-visible .stagger-child {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- 10. RESPONSIVE DESIGN --- */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+        padding-top: 30vh;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .sidebar {
+        display: none;
+    }
+    .main-content {
+        width: 100%;
+    }
+    .mobile-menu-container {
+        display: block;
+    }
+    .profile-image-container {
+        width: 120px;
+        height: 120px;
+    }
+    body.anim-step-2 .profile-image-container {
+        transform: translateX(-120px);
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+    section h2 {
+        font-size: 2.2rem;
+    }
+    .profile-image-container {
+        width: 110px;
+        height: 110px;
+    }
+    .profile-name {
+        font-size: 5rem;
+    }
+    body.anim-step-2 .profile-image-container {
+        transform: translateX(-110px);
+    }
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    .profile-details {
+        gap: 10px;
+    }
+    .profile-details div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-details dt {
+        width: auto;
+        font-weight: 300;
+        color: #888;
+        font-size: 0.9em;
+    }
+    .profile-details dd {
+        margin-left: 0;
+    }
+    .link-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image-container {
+        width: 90px;
+        height: 90px;
+    }
+    .profile-name {
+        font-size: 4rem;
+    }
+    body.anim-step-2 .profile-image-container {
+        transform: translateX(-90px);
+    }
+}
