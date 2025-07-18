@@ -38,6 +38,9 @@ if (window.location.hash) {
                     if (staggerChildren.length > 0) {
                         staggerChildren.forEach((child, index) => {
                             child.style.transitionDelay = `${index * 100}ms`;
+                            child.addEventListener('transitionend', () => {
+                                child.style.transitionDelay = null;
+                            }, { once: true });
                         });
                     }
                     observer.unobserve(entry.target);

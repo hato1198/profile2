@@ -335,11 +335,9 @@ section h2::after {
     border-radius: 8px;
     overflow: hidden;
     display: block;
-    /* transition プロパティは stagger-child 側で一元管理 */
 }
 .website-card:hover, .download-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    background-color: var(--light-gray-color);
 }
 .download-card {
     cursor: pointer;
@@ -646,7 +644,7 @@ section h2::after {
     transform: translateY(40px);
     transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
                 transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
-                box-shadow 0.3s ease;
+                background-color 0.3s ease;
 }
 
 
