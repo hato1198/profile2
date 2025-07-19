@@ -116,7 +116,6 @@ section {
     position: sticky;
     top: 0;
     align-self: flex-start;
-    /* height: 100vh; を削除してフッターとの干渉を解消 */
 }
 
 .sidebar-profile {
@@ -335,13 +334,12 @@ section h2::after {
     border-radius: 8px;
     overflow: hidden;
     display: block;
+    cursor: pointer;
 }
 .website-card:hover, .download-card:hover {
     background-color: var(--light-gray-color);
 }
-.download-card {
-    cursor: pointer;
-}
+
 
 .website-card img, .download-card img {
     aspect-ratio: 3 / 2;
@@ -353,7 +351,6 @@ section h2::after {
     padding: 20px;
 }
 .card-content h3 {
-    margin-bottom: 10px;
     font-size: 1.2rem;
 }
 .card-body-hidden {
@@ -570,7 +567,7 @@ section h2::after {
 
 #modal-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
     margin-bottom: 25px;
     border-radius: 4px;
@@ -736,5 +733,20 @@ section h2::after {
     }
     body.anim-step-2 .profile-image-container {
         transform: translateX(-90px);
+    }
+    #modal-container {
+        padding: 15px;
+    }
+    .modal-content {
+        padding: 30px;
+    }
+    #modal-title {
+        font-size: 1.6rem;
+    }
+    #modal-body {
+        margin-bottom: 20px;
+    }
+    .modal-close-button {
+        transform: translate(5px, -5px);
     }
 }

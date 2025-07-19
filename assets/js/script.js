@@ -47,8 +47,8 @@ if (window.location.hash) {
                 }
             });
         }, { 
-            rootMargin: "0px 0px -250px 0px", // ビューポートの底辺を150px上にずらす
-            threshold: 0                     // ずらした境界線を通過した瞬間にトリガー
+            rootMargin: "0px 0px -250px 0px",
+            threshold: 0
         });
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
@@ -88,13 +88,13 @@ if (window.location.hash) {
             });
         }
 
-        // --- Downloads Modal Logic ---
-        const downloadCards = document.querySelectorAll('.download-card');
+        // --- Downloads & Websites Modal Logic ---
+        const modalTriggerCards = document.querySelectorAll('.download-card, .website-card');
         const modalContainer = document.getElementById('modal-container');
         const modalCloseBtn = document.querySelector('.modal-close-button');
         
         if (modalContainer) {
-            downloadCards.forEach(card => {
+            modalTriggerCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const title = card.dataset.title;
                     const imgSrc = card.querySelector('img').src;
@@ -108,6 +108,18 @@ if (window.location.hash) {
                     const modalLink = document.getElementById('modal-link');
                     modalLink.href = linkHref;
                     modalLink.textContent = linkText;
+                    
+                    // If link is empty (e.g., for "開発中" items), disable the button or change its style
+                    if (linkHref === "") {
+                        modalLink.style.pointerEvents = "none";
+                        modalLink.style.opacity = "0.5";
+                        modalLink.style.cursor = "not-allowed";
+                    } else {
+                        modalLink.style.pointerEvents = "auto";
+                        modalLink.style.opacity = "1";
+                        modalLink.style.cursor = "pointer";
+                    }
+
 
                     modalContainer.classList.add('visible');
                     body.classList.add('no-scroll');
@@ -136,7 +148,13 @@ if (window.location.hash) {
             linkList.querySelectorAll('a').forEach(link => {
                 try {
                     const domain = new URL(link.href).hostname;
-                    const faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain_url=${domain}`;
+                    let faviconUrl;
+
+                    if (domain === 'booth.pm' || domain.endsWith('.booth.pm')) {
+                        faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain_url=booth.pm`; 
+                    } else {
+                        faviconUrl = `https://www.google.com/s2/favicons?sz=32&domain_url=${domain}`;
+                    }
                     
                     const faviconImg = document.createElement('img');
                     faviconImg.src = faviconUrl;
@@ -147,7 +165,7 @@ if (window.location.hash) {
 
                     link.prepend(faviconImg);
                 } catch (error) {
-                    console.error('Invalid URL for favicon:', link.href);
+                    console.error('Invalid URL for favicon:', link.href, error);
                 }
             });
         }
@@ -155,7 +173,7 @@ if (window.location.hash) {
         // --- Page Top Button Logic ---
         const pageTopBtn = document.getElementById('page-top-btn');
         if (pageTopBtn) {
-            const showOnPx = 400; // 400pxスクロールしたらボタンを表示
+            const showOnPx = 400;
 
             const handleScrollForBtn = () => {
                 if (window.scrollY > showOnPx) {
