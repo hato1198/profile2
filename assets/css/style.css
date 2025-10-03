@@ -148,6 +148,7 @@ section {
 .sidebar-nav ul {
     list-style: none;
     transition: transform 0.5s ease;
+    transform: translateY(-40px);
 }
 
 .sidebar.scrolled .sidebar-nav ul {
